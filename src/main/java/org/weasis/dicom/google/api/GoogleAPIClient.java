@@ -112,13 +112,12 @@ public class GoogleAPIClient {
 
         String portableDir = System.getProperty("weasis.portable.dir");
         if (portableDir != null) {
-            return new FileInputStream(portableDir + File.separator + SECRETS_FILE_NAME);
+            File portableSecrets = new File(portableDir + File.separator + SECRETS_FILE_NAME);
+            if (portableSecrets.exists() && !portableSecrets.isDirectory()) {
+                return new FileInputStream(portableSecrets);
+            }
         }
 
-        String url = System.getProperty("weasis.codebase.url");
-        if (url != null) {
-            return new URL(url + "/" + SECRETS_FILE_NAME).openStream();
-        }
         return GoogleAPIClient.class.getResource("/" + SECRETS_FILE_NAME).openStream();
     }
 
