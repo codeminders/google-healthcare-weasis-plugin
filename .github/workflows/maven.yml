@@ -19,7 +19,7 @@ jobs:
         cd temp
         git clone https://github.com/nroduit/Weasis.git
         cd Weasis
-        git checkout 68e1f3a2f0b413ec1d6269314cd1456fd65b9950
+        git checkout 3.0.4
         mvn clean install
     - name: Build google-healthcare-weasis-plugin
       run: mvn clean install
